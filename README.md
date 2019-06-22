@@ -26,18 +26,22 @@ Your *solution* is... yap, you guessed it. At the press of a single keyboard sho
 
 If you have a mix of random and event-style pictures on your phone or camera, don't worry. Thanks to *permanent* target folders (family, dog, kitty) and *temporary* ones (your trip to the Everest), your list of proposed target directories is always down to the relevant ones. Just type a part of a word that occurs in path of your desired directory (e.g. "fam" for family) and the current picture will be moved there as soon as you press return.
 
-# Prepare to run Fotosort
+# Installing Fotosort
 
-You will need python3 and to run `pip install -r requirements.txt`
+Type `sudo pip install .` in order to install Fotosort system-wide (or `pip install --user .` to install it inside your user directory).
 
-Next, copy the the file `fotosort.yaml.example` to `/home/youruser/.config/fotosort.yaml` and adjust it as follows:
+After creating the configuration file (see below), you can launch Fotosort by typing `fotosort` in the terminal. Make sure the path pip installs to is in your PATH variable.
+
+## Configuration file
+
+Copy the the file `fotosort.yaml.example` to `/home/youruser/.config/fotosort.yaml` and adjust it as follows:
 
  - If you want to keep the pictures on your camera / phone, set `copy_pictures` to `true`, or set it to `false` if you want to move the files instead.
  - The `extensions` should already work for you. If your camera produces a different file format, add the extension here.
  - Change the list of permanent output directories `perm_output_dirs` such that it contains the directories you often move pictures to, as described in scenario 1. Do not suffix paths with `/`.
  - Put the path to your pictures folder (including the suffix `/`) next to `temp_output_prefix`. This is where temporary output paths will be created, as described in scenario 2.
 
-You can now launch Fotosort with `python3 run.py`
+ You may now launch fotosort.
 
 # Using Fotosort
 

@@ -1,8 +1,9 @@
 from PySide2.QtWidgets import QApplication, QErrorMessage
 from PySide2.QtQml import QQmlApplicationEngine
 from PySide2.QtCore import QUrl, QObject, Signal, Slot, QStringListModel
+import os
 
-import imgutils
+from . import imgutils
 
 
 class UI(QObject):
@@ -22,7 +23,8 @@ class UI(QObject):
         self.context = self.engine.rootContext()
         self.context.setContextProperty("ui", self)
         self._refreshOutputDirs()
-        self.engine.load(QUrl("qml/main.qml"))
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        self.engine.load(QUrl.fromLocalFile(os.path.join(dir_path, "qml/main.qml")))
         self.root = self.engine.rootObjects()[0]
         self.imageChangedSignal.connect(self.root.updateImage)
 
