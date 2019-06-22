@@ -28,7 +28,7 @@ If you have a mix of random and event-style pictures on your phone or camera, do
 
 # Installing Fotosort
 
-Type `sudo pip install .` in order to install Fotosort system-wide (or `pip install --user .` to install it inside your user directory).
+Fotosort is available on PyPi. Type `sudo pip install fotosort` in order to install Fotosort system-wide (or `pip install --user fotosort` to install it inside your user directory). In case your main python version is python2, type `pip3` instead of `pip`.
 
 After creating the configuration file (see below), you can launch Fotosort by typing `fotosort` in the terminal. Make sure the path pip installs to is in your PATH variable.
 
