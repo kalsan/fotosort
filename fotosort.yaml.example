@@ -1,0 +1,21 @@
+# Adjust at will and copy to ~/.config/fotosort.yaml
+
+# If true, pictures will be copied to the target folder, otherwise they are moved
+copy_pictures: false
+
+# Fotosort will attempt to open pictures with these extensions:
+extensions:
+- '*.jpg'
+- '*.JPG'
+- '*.png'
+- '*.PNG'
+
+# Output directories to which Fotosort will suggest moving to:
+perm_output_dirs:
+- /home/user/Pictures/Dog
+- /home/user/Pictures/Cat
+- /home/user/Pictures/Family Random
+- /srv/pics/public
+
+# When creating a tempoarary output directory, this path will be prepended to the date:
+temp_output_prefix: /home/user/Pictures/

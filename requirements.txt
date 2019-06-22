@@ -1,0 +1,4 @@
+pillow
+pyyaml
+pyside2
+appdirs
