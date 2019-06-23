@@ -3,3 +3,4 @@
 ## 1.1
 
 - If no config file exists, Fotosort automatically creates it.
+- Created settings dialog

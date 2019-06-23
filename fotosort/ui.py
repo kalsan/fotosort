@@ -142,6 +142,19 @@ class UI(QObject):
         self.root.focusCombobox()
         self.root.showStatus("Target added.", "blue")
 
+    @Slot()
+    def openSettingsDialog(self):
+        self.root.openSettingsDialog(self.conf.temp_output_prefix, bool(self.conf.copy_pictures))
+
+    @Slot(str, bool)
+    def applySettingsDialog(self, temp_output_prefix, copy_pictures):
+        self.conf.temp_output_prefix = temp_output_prefix
+        if not self.conf.temp_output_prefix.endswith('/'):
+            self.conf.temp_output_prefix += '/'
+        self.conf.copy_pictures = copy_pictures
+        self.root.focusCombobox()
+        self.root.showStatus("Settings applied.", "blue")
+
     def _refreshOutputDirs(self):
         self.output_dirs = self.temp_output_dirs + self.conf.perm_output_dirs
         self.context.setContextProperty("output_dirs", self.output_dirs)

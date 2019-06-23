@@ -50,6 +50,16 @@ ApplicationWindow {
         ui.applyAddTempTargetDialog(newTempLocation.text);
     }
 
+    function openSettingsDialog(tempOutputPrefixText, copyPicturesChecked){
+        tempOutputPrefix.text = tempOutputPrefixText;
+        copyPictures.checked = copyPicturesChecked;
+        settingsDialog.open();
+    }
+
+    function applySettingsDialog(){
+        ui.applySettingsDialog(tempOutputPrefix.text, copyPictures.checked);
+    }
+
     function focusCombobox(){
         combobox.forceActiveFocus();
     }
@@ -148,10 +158,50 @@ ApplicationWindow {
         }
     }
 
+    Dialog {
+        id: settingsDialog
+        title: "Fotosort settings"
+        standardButtons: Dialog.Save | Dialog.Cancel
+        modal: true
+        x: (parent.width - width) / 2
+        y: (parent.height - height) / 2
+        onAccepted: applySettingsDialog()
+        onRejected: focusCombobox();
+
+        GridLayout {
+            anchors.fill: parent
+            columns: 2
+
+            Text { text: "Path to pictures folder:  "}
+
+            TextField {
+                id: tempOutputPrefix
+                width: parent.width
+                style: TextFieldStyle {
+                    textColor: "black"
+                    background: Rectangle {
+                        radius: 2
+                        implicitWidth: 100
+                        implicitHeight: 24
+                        border.color: "#333"
+                        border.width: 1
+                    }
+                }
+            }
+
+            Text { text: "Copy pictures? (otherwise moved):  "}
+
+            CheckBox { id: copyPictures }
+
+            Button { text: "Edit traget locations"; onClicked: ui.openTargetsDialog() }
+        }
+    }
+
     menuBar: MenuBar {
         Menu {
             title: "Fotosort"
             MenuItem { text: "Open folder"; shortcut: "Ctrl+O"; onTriggered: folderDialog.open() }
+            MenuItem { text: "Manage settings"; shortcut: "Ctrl+,"; onTriggered: ui.openSettingsDialog() }
             MenuItem { text: "Manage target locations"; shortcut: "Ctrl+Shift+T"; onTriggered: ui.openTargetsDialog() }
             MenuItem { text: "Add temporary target location"; shortcut: "Ctrl+T"; onTriggered: ui.openAddTempTargetDialog() }
             MenuItem { text: "Quit"; shortcut: "Ctrl+Q"; onTriggered: Qt.quit() }
