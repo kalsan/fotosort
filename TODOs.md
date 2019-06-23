@@ -1,6 +1,5 @@
 # Useful
 
-- Dialog for modifying settings
 - Document code ;-)
 
 # Optimizations
