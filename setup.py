@@ -6,7 +6,7 @@ with open("README.md") as f:
 
 setuptools.setup(
     name='fotosort',
-    version='1.0',
+    version='1.1',
     scripts=['bin/fotosort'],
     author="Sandro Kalbermatter",
     author_email="",
