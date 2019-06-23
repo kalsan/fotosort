@@ -1,6 +1,5 @@
 # Useful
 
-- Create config file using wizard
 - Dialog for modifying settings
 - Document code ;-)
 

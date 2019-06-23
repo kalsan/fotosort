@@ -19,8 +19,16 @@ def run():
 
     confpath = os.path.join(appdirs.user_config_dir(), "fotosort.yaml")
 
-    with open(confpath) as stream:
-        conf = SimpleNamespace(**yaml.safe_load(stream))
+    if os.path.isfile(confpath):
+        with open(confpath) as stream:
+            conf = SimpleNamespace(**yaml.safe_load(stream))
+    else:
+        conf = SimpleNamespace(
+            copy_pictures=False,
+            extensions=['*.jpg', '*.JPG', '*.png', '*.PNG'],
+            perm_output_dirs=[],
+            temp_output_prefix=os.path.expanduser('~')
+        )
 
     controller = Controller(conf, args.location)
     ui = UI(conf, controller)
