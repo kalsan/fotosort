@@ -1,6 +1,9 @@
 # Useful
 
 - Document code ;-)
+- Option for auto-adding first level directories of pictures path to temporary target list
+- Photo ranges (start range, end range, Ctrl+T adds date span to target dir name)
+- Customizable FOTOSORT-TRASH location
 
 # Optimizations
 
@@ -12,3 +15,5 @@
 
 - Capture date/time correction
 - Auto-renaming pictures according to date/time
+- Rotating pictures
+- Zooming
