@@ -1,9 +1,16 @@
+# Important
+
+- Fix window resizing under Mac
+
 # Useful
 
 - Document code ;-)
 - Option for auto-adding first level directories of pictures path to temporary target list
 - Photo ranges (start range, end range, Ctrl+T adds date span to target dir name)
 - Customizable FOTOSORT-TRASH location
+- Go to first/last image
+- Show image total and current
+- Image markers for fast jumping
 
 # Optimizations
 
