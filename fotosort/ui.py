@@ -70,6 +70,11 @@ class UI(QObject):
             self.root.setUndoText("Undo {}".format(self.controller.history[-1][0]))
 
     @Slot()
+    def first(self):
+        self.setCurrentImage(self.controller.first())
+        self.root.showStatus("[<-", "black")
+
+    @Slot()
     def prev(self):
         self.setCurrentImage(self.controller.prev())
         self.root.showStatus("<-", "black")
@@ -78,6 +83,11 @@ class UI(QObject):
     def next(self):
         self.setCurrentImage(self.controller.next())
         self.root.showStatus("->", "black")
+
+    @Slot()
+    def last(self):
+        self.setCurrentImage(self.controller.last())
+        self.root.showStatus("->]", "black")
 
     @Slot()
     def reload(self):

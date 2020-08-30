@@ -208,8 +208,10 @@ ApplicationWindow {
         }
         Menu {
             title: "Navigate"
+            MenuItem { text: "First"; shortcut: "Ctrl+Shift+Tab"; onTriggered: ui.first() }
             MenuItem { text: "Prev"; shortcut: "Shift+Tab"; onTriggered: ui.prev() }
             MenuItem { text: "Next"; shortcut: "Tab"; onTriggered: ui.next() }
+            MenuItem { text: "Last"; shortcut: "Ctrl+Tab"; onTriggered: ui.last() }
         }
         Menu {
             title: "Actions"

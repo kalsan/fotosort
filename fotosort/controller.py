@@ -23,6 +23,12 @@ class Controller:
             return None
         return self.file_list[self.curr_index]
 
+    def first(self):
+        if not self.file_list:
+            return None
+        self.curr_index = 0
+        return self.file_list[self.curr_index]
+
     def prev(self):
         if not self.file_list:
             return None
@@ -33,6 +39,12 @@ class Controller:
         if not self.file_list:
             return None
         self.curr_index = min(len(self.file_list) - 1, self.curr_index + 1)
+        return self.file_list[self.curr_index]
+
+    def last(self):
+        if not self.file_list:
+            return None
+        self.curr_index = len(self.file_list) - 1
         return self.file_list[self.curr_index]
 
     def copyCurrentFile(self, target_dir):
