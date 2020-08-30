@@ -1,7 +1,3 @@
-# Important
-
-- Fix window resizing under Mac
-
 # Useful
 
 - Document code ;-)

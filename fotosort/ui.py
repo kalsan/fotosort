@@ -64,7 +64,9 @@ class UI(QObject):
 
     def setCurrentImage(self, new_image):
         self.currentImage = new_image
-        self.imageChangedSignal.emit()
+        w, h = self.root.width(), self.root.height()  # Save previous window geometry
+        self.imageChangedSignal.emit()  # This loads the picture and displays it, unfortunately resizing the window
+        self.root.resize(w,h)  # Programatically restore the window geometry prior to the load to avoid huge window
         # Adjust undo button
         if self.root.setUndoEnabled(len(self.controller.history) > 0):
             self.root.setUndoText("Undo {}".format(self.controller.history[-1][0]))
