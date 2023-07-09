@@ -1,11 +1,13 @@
-# Fotosort Changelog since v1.0
+# unreleased
 
-## 1.1
+- Implement "first" and "last" jump menues
+- Fix an undesired behavior where the window was resized on picture load
+
+# 1.1
 
 - If no config file exists, Fotosort automatically creates it.
 - Created settings dialog
 
-## (current master)
+# 1.0
 
-- Implement "first" and "last" jump menues
-- Fix an undesired behavior where the window was resized on picture load
+Initial version

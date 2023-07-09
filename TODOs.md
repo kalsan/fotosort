@@ -4,7 +4,7 @@
 - Option for auto-adding first level directories of pictures path to temporary target list
 - Photo ranges (start range, end range, Ctrl+T adds date span to target dir name)
 - Customizable FOTOSORT-TRASH location
-- Go to first/last image
+- Ctrl+Home / Ctrl+End for jumping to beginning / end of all pictures
 - Show image total and current
 - Image markers for fast jumping
 
