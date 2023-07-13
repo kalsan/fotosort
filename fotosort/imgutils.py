@@ -29,7 +29,10 @@ def get_orientation(filepath):
 
 def get_timestamp(filepath):
     try:
-        s = Image.open(filepath)._getexif()[36867]
+        exifdata = Image.open(filepath)._getexif()
+        if exifdata is None:
+            return ''
+        s = exifdata[36867]
         return s.replace(':', '_').replace(' ', '-')
     except (AttributeError, KeyError, IndexError):
         return ''
