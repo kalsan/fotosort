@@ -21,7 +21,7 @@ setuptools.setup(
     install_requires=[
         'pillow',
         'pyyaml',
-        'pyside2',
+        'pyside6',
         'appdirs'
     ],
     classifiers=[

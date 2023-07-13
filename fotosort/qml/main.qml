@@ -1,9 +1,8 @@
-import QtQuick 2.5
-import QtQuick.Controls 2.5
-import QtQuick.Controls 1.4
-import QtQuick.Controls.Styles 1.4
-import QtQuick.Layouts 1.12
-import QtQuick.Dialogs 1.1
+import QtCore 6.5
+import QtQuick 6.5
+import QtQuick.Controls 6.5
+import QtQuick.Layouts 6.5
+import QtQuick.Dialogs 6.5
 
 ApplicationWindow {
     id: window
@@ -77,18 +76,18 @@ ApplicationWindow {
     MessageDialog {
     id: errorDialog
         title: "An error occured"
-        text: "(No info available)"
-        standardButtons: StandardButton.Ok
-        icon: StandardIcon.Critical
+        Label {
+            text: "(No info available)"
+        }
+        buttons: MessageDialog.Ok
         onAccepted: focusCombobox();
     }
 
-    FileDialog {
+    FolderDialog {
         id: folderDialog
-        selectFolder: true
         title: "Select a directory with photos to move"
-        folder: shortcuts.home
-        onAccepted: ui.setLocation(folderDialog.folder)
+        currentFolder: StandardPaths.standardLocations(StandardPaths.PicturesLocation)[0]
+        onAccepted: ui.setLocation(folderDialog.selectedFolder)
         onRejected: focusCombobox();
     }
 
@@ -138,17 +137,15 @@ ApplicationWindow {
             TextField {
                 id: newTempLocation
                 width: parent.width
-                style: TextFieldStyle {
-                    textColor: "black"
-                    background: Rectangle {
-                        radius: 2
-                        implicitWidth: 100
-                        implicitHeight: 24
-                        border.color: "#333"
-                        border.width: 1
-                    }
+                color: "black"
+                background: Rectangle {
+                    radius: 2
+                    implicitWidth: 100
+                    implicitHeight: 24
+                    border.color: "#333"
+                    border.width: 1
                 }
-                Keys.onPressed: {
+                Keys.onPressed: function(event) {
                     if (event.key == Qt.Key_Return || event.key == Qt.Key_Enter) {
                         addTempTargetDialog.accept()
                         event.accepted = true;
@@ -177,15 +174,13 @@ ApplicationWindow {
             TextField {
                 id: tempOutputPrefix
                 width: parent.width
-                style: TextFieldStyle {
-                    textColor: "black"
-                    background: Rectangle {
-                        radius: 2
-                        implicitWidth: 100
-                        implicitHeight: 24
-                        border.color: "#333"
-                        border.width: 1
-                    }
+                color: "black"
+                background: Rectangle {
+                    radius: 2
+                    implicitWidth: 100
+                    implicitHeight: 24
+                    border.color: "#333"
+                    border.width: 1
                 }
             }
 
@@ -200,23 +195,23 @@ ApplicationWindow {
     menuBar: MenuBar {
         Menu {
             title: "Fotosort"
-            MenuItem { text: "Open folder"; shortcut: "Ctrl+O"; onTriggered: folderDialog.open() }
-            MenuItem { text: "Manage settings"; shortcut: "Ctrl+,"; onTriggered: ui.openSettingsDialog() }
-            MenuItem { text: "Manage target locations"; shortcut: "Ctrl+Shift+T"; onTriggered: ui.openTargetsDialog() }
-            MenuItem { text: "Add temporary target location"; shortcut: "Ctrl+T"; onTriggered: ui.openAddTempTargetDialog() }
-            MenuItem { text: "Quit"; shortcut: "Ctrl+Q"; onTriggered: Qt.quit() }
+            ShortcutMenuItem { text: "Open folder"; sequence: "Ctrl+O"; onTriggered: folderDialog.open() }
+            ShortcutMenuItem { text: "Manage settings"; sequence: "Ctrl+,"; onTriggered: ui.openSettingsDialog() }
+            ShortcutMenuItem { text: "Manage target locations"; sequence: "Ctrl+Shift+T"; onTriggered: ui.openTargetsDialog() }
+            ShortcutMenuItem { text: "Add temporary target location"; sequence: "Ctrl+T"; onTriggered: ui.openAddTempTargetDialog() }
+            ShortcutMenuItem { text: "Quit"; sequence: "Ctrl+Q"; onTriggered: Qt.quit() }
         }
         Menu {
             title: "Navigate"
-            MenuItem { text: "First"; shortcut: "Ctrl+Shift+Tab"; onTriggered: ui.first() }
-            MenuItem { text: "Prev"; shortcut: "Shift+Tab"; onTriggered: ui.prev() }
-            MenuItem { text: "Next"; shortcut: "Tab"; onTriggered: ui.next() }
-            MenuItem { text: "Last"; shortcut: "Ctrl+Tab"; onTriggered: ui.last() }
+            ShortcutMenuItem { text: "First"; sequence: "Ctrl+Shift+Tab"; onTriggered: ui.first() }
+            ShortcutMenuItem { text: "Prev"; sequence: "Shift+Tab"; onTriggered: ui.prev() }
+            ShortcutMenuItem { text: "Next"; sequence: "Tab"; onTriggered: ui.next() }
+            ShortcutMenuItem { text: "Last"; sequence: "Ctrl+Tab"; onTriggered: ui.last() }
         }
         Menu {
             title: "Actions"
-            MenuItem { text: "Undo"; shortcut: "Ctrl+Z"; onTriggered: { ui.undo(); ui.reload(); } id: undoMenuItem; enabled: false }
-            MenuItem { text: "Trash"; shortcut: "Ctrl+D"; onTriggered: { ui.trashCurrentFile(); ui.reload(); } }
+            ShortcutMenuItem { text: "Undo"; sequence: "Ctrl+Z"; onTriggered: { ui.undo(); ui.reload(); } id: undoMenuItem; enabled: false }
+            ShortcutMenuItem { text: "Trash"; sequence: "Ctrl+D"; onTriggered: { ui.trashCurrentFile(); ui.reload(); } }
         }
     }
 
@@ -245,11 +240,11 @@ ApplicationWindow {
                 model: output_dirs
                 editable: true
                 focus: true;
-                Keys.onPressed: {
+                Keys.onPressed: function(event) {
                     if (event.key == Qt.Key_Return || event.key == Qt.Key_Enter) {
                         if (suggestionText.text !== ""){
                             ui.moveOrCopyCurrentFile(suggestionText.text);
-                            ui.reload(); 
+                            ui.reload();
                             selectAll();
                             event.accepted = true;
                         }

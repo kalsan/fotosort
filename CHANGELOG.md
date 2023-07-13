@@ -1,3 +1,7 @@
+# Unreleased
+
+- Update to pyside 6 and Qt 6.5, remove now unnecessary resize workaround
+
 # 1.2.0
 
 - Implement "first" and "last" jump menues
