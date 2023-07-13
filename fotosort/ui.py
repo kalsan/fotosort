@@ -34,6 +34,12 @@ class UI(QObject):
     def run(self):
         self.app.exec_()
 
+    @Slot(result=str)
+    def getVersion(self):
+        with open('VERSION') as f:
+            v = self.version = f.read()
+        return v
+
     def excepthook(self, cls, exception, traceback):
         self.root.showStatus("An error occured.", "red")
         self.root.showError("An error occured:\n\n{}".format(exception))

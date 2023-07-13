@@ -12,7 +12,7 @@ ApplicationWindow {
     function updateImage(){
         var filepath = ui.getCurrentImage()
         image.source = filepath
-        window.title = "FotoSort " + filepath + ' ' + ui.getCurrentImageTimestamp()
+        window.title = "FotoSort " + ui.getVersion() + ' ' + filepath + ' ' + ui.getCurrentImageTimestamp()
     }
 
     function selectAll(){

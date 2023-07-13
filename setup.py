@@ -3,10 +3,13 @@ import setuptools
 with open("README.md") as f:
     long_description = f.read()
 
+with open('VERSION') as f:
+    version = f.read()
+
 
 setuptools.setup(
     name='fotosort',
-    version='1.2.0',
+    version=version,
     scripts=['bin/fotosort'],
     author="Sandro Kalbermatter",
     author_email="",
