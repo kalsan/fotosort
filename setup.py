@@ -3,7 +3,7 @@ import setuptools
 with open("README.md") as f:
     long_description = f.read()
 
-with open('VERSION') as f:
+with open('fotosort/VERSION') as f:
     version = f.read()
 
 
@@ -18,7 +18,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/kalsan/fotosort",
     packages=setuptools.find_packages(),
-    package_data={'': ['qml/*', 'images/*']},
+    package_data={'': ['qml/*', 'images/*', 'VERSION']},
     include_package_data=True,
     license='GPLv3',
     install_requires=[

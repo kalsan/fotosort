@@ -36,7 +36,7 @@ class UI(QObject):
 
     @Slot(result=str)
     def getVersion(self):
-        with open('VERSION') as f:
+        with open(os.path.join(os.path.dirname(__file__), 'VERSION')) as f:
             v = self.version = f.read()
         return v
 
