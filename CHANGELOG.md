@@ -1,4 +1,8 @@
-# Unreleased
+# 1.3.1
+
+- Fix reading of VERSION
+
+# 1.3.0
 
 - Update to pyside 6 and Qt 6.5, remove now unnecessary resize workaround
 
