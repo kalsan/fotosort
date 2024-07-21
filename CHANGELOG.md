@@ -1,3 +1,11 @@
+# unreleased
+
+- By HappyTetrahedron:
+  - Anchor relative paths to the path that is being sorted
+  - Create inexisting directories even for permanent target locations
+  - Enhance autocomplete by specifying proper ordering of criteria
+  - Make timestamp for temporary directories customisable
+
 # 1.3.1
 
 - Fix reading of VERSION
