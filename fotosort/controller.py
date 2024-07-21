@@ -50,8 +50,10 @@ class Controller:
     def copyCurrentFile(self, target_dir):
         if not self.file_list:
             return None
+        abs_target_dir = self.__absolute_path(target_dir)
+        self.ensure_dir_exists(abs_target_dir)
         source_file = self.file_list[self.curr_index]
-        target_file = self.__collision_free_filename(source_file, target_dir)
+        target_file = self.__collision_free_filename(source_file, abs_target_dir)
         self.history.append(["Copy", source_file, target_file, self.curr_index])
         shutil.copy(source_file, target_file)
         return target_file
@@ -59,8 +61,10 @@ class Controller:
     def moveCurrentFile(self, target_dir, called_by_delete=False):
         if not self.file_list:
             return None
+        abs_target_dir = self.__absolute_path(target_dir)
+        self.ensure_dir_exists(abs_target_dir)
         source_file = self.file_list[self.curr_index]
-        target_file = self.__collision_free_filename(source_file, target_dir)
+        target_file = self.__collision_free_filename(source_file, abs_target_dir)
         self.history.append(["Delete" if called_by_delete else "Move", source_file, target_file, self.curr_index])
         shutil.move(source_file, target_file)
         del self.file_list[self.curr_index]
@@ -102,6 +106,11 @@ class Controller:
             target_name = split[0] + "_" + str(ext) + split[1]
             target_file = target_dir + '/' + target_name
         return target_file
+
+    def __absolute_path(self, path):
+        if os.path.isabs(path):
+            return path
+        return os.path.join(os.path.dirname(self.file_list[self.curr_index]), path)
 
     def __trash_dir(self):
         return os.path.dirname(self.file_list[self.curr_index]) + '/FOTOSORT-TRASH'
