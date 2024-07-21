@@ -49,6 +49,12 @@ class UI(QObject):
         if len(searchtext) == 0:
             return ""
         for item in self.output_dirs:
+            if searchtext == item:
+                return item
+        for item in self.output_dirs:
+            if item.startswith(searchtext):
+                return item
+        for item in self.output_dirs:
             if searchtext in item:
                 return item
         for item in self.output_dirs:  # Fallback to lowercase search
