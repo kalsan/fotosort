@@ -1,6 +1,7 @@
 # From https://stackoverflow.com/questions/13872331/rotating-an-image-with-orientation-specified-in-exif-using-python-without-pil-in
 
 from PIL import Image, ExifTags
+import datetime
 
 
 # This remains from before QML auto-rotated the picture and is not used any longer
@@ -33,6 +34,6 @@ def get_timestamp(filepath):
         if exifdata is None:
             return ''
         s = exifdata[36867]
-        return s.replace(':', '_').replace(' ', '-')
-    except (AttributeError, KeyError, IndexError):
+        return datetime.datetime.strptime(s, '%Y:%m:%d %H:%M:%S')
+    except (AttributeError, KeyError, IndexError, ValueError):
         return ''
