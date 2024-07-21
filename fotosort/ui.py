@@ -17,6 +17,7 @@ class UI(QObject):
         self.conf = conf
         self.temp_output_dirs = []
         self.output_dirs = self.conf.perm_output_dirs.copy()
+        self.timestamp_prefix_format = self.conf.timestamp_prefix_format
 
         self.app = QApplication([])
         self.engine = QQmlApplicationEngine()
@@ -72,7 +73,10 @@ class UI(QObject):
 
     @Slot(result=str)
     def getCurrentImageTimestamp(self):
-        return imgutils.get_timestamp(self.currentImage)
+        ts = imgutils.get_timestamp(self.currentImage)
+        if ts:
+            return ts.strftime('%Y_%m_%d-%H_%M_%S')
+        return ""
 
     def setCurrentImage(self, new_image):
         self.currentImage = new_image
@@ -152,9 +156,10 @@ class UI(QObject):
     @Slot()
     def openAddTempTargetDialog(self):
         ts = imgutils.get_timestamp(self.controller.current())
+        ts_str = ""
         if ts:
-            ts = self.conf.temp_output_prefix + ts[:10] + ' '
-        self.root.openAddTempTargetDialog(ts)
+            ts_str = ts.strftime(self.timestamp_prefix_format)
+        self.root.openAddTempTargetDialog(ts_str)
 
     @Slot(str)
     def applyAddTempTargetDialog(self, newTarget):
