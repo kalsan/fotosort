@@ -6,7 +6,7 @@ import shutil
 class Controller:
     def __init__(self, conf, location=None):
         self.conf = conf
-        self.setLocation(location)
+        self.setLocation(self.__make_absolute(location, os.getcwd()))
 
     def setLocation(self, location):
         self.curr_index = 0
@@ -108,9 +108,14 @@ class Controller:
         return target_file
 
     def __absolute_path(self, path):
+        return self.__make_absolute(path, os.path.dirname(self.file_list[self.curr_index]))
+
+    @staticmethod
+    def __make_absolute(path, basedir):
         if os.path.isabs(path):
             return path
-        return os.path.join(os.path.dirname(self.file_list[self.curr_index]), path)
+        return os.path.join(basedir,  path)
+
 
     def __trash_dir(self):
         return os.path.dirname(self.file_list[self.curr_index]) + '/FOTOSORT-TRASH'
