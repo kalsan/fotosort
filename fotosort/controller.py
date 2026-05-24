@@ -6,7 +6,9 @@ import shutil
 class Controller:
     def __init__(self, conf, location=None):
         self.conf = conf
-        self.setLocation(self.__make_absolute(location, os.getcwd()))
+        if location is not None:
+            location = self.__make_absolute(location, os.getcwd())
+        self.setLocation(location)
 
     def setLocation(self, location):
         self.curr_index = 0
@@ -80,8 +82,7 @@ class Controller:
         self.moveCurrentFile(target_dir, True)
 
     def ensure_dir_exists(self, target_dir):
-        if not os.path.isdir(target_dir):
-            os.mkdir(target_dir)
+        os.makedirs(target_dir, exist_ok=True)
 
     def undo(self):
         if not self.history:

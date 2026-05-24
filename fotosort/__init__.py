@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 
 import argparse
-from types import SimpleNamespace
-import yaml
-import glob
 import os
-import appdirs
 import sys
+from types import SimpleNamespace
 
-from .ui import UI
+import appdirs
+import yaml
+
 from .controller import Controller
+from .ui import UI
 
 
 def run():
@@ -29,7 +29,8 @@ def run():
 
     if os.path.isfile(confpath):
         with open(confpath) as stream:
-            conf_dict.update(yaml.safe_load(stream))
+            loaded = yaml.safe_load(stream) or {}
+            conf_dict.update(loaded)
 
     conf = SimpleNamespace(**conf_dict)
 

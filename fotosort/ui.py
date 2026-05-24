@@ -33,7 +33,7 @@ class UI(QObject):
         self.root.selectAll()
 
     def run(self):
-        self.app.exec_()
+        self.app.exec()
 
     @Slot(result=str)
     def getVersion(self):
@@ -66,10 +66,6 @@ class UI(QObject):
     @Slot(result=str)
     def getCurrentImage(self):
         return self.currentImage or "../images/noimage.png"
-
-    @Slot(result=int)
-    def getCurrentImageRotation(self):
-        return imgutils.get_orientation(self.currentImage)
 
     @Slot(result=str)
     def getCurrentImageTimestamp(self):

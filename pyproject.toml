@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fotosort"
+dynamic = ["version", "readme"]
+description = "Fotosort is a program for quickly copying or moving pictures from different events into different folders."
+authors = [{ name = "Sandro Kalbermatter" }]
+license = "GPL-3.0-or-later"
+requires-python = ">=3.9"
+dependencies = [
+    "pillow>=10",
+    "pyyaml>=6",
+    "pyside6>=6.5",
+    "appdirs>=1.4",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.optional-dependencies]
+dev = ["build", "twine"]
+
+[project.urls]
+Homepage = "https://github.com/kalsan/fotosort"
+
+[project.scripts]
+fotosort = "fotosort:run"
+
+[tool.setuptools]
+packages = ["fotosort"]
+
+[tool.setuptools.dynamic]
+version = { file = "fotosort/VERSION" }
+readme = { file = "README.md", content-type = "text/markdown" }
+
+[tool.setuptools.package-data]
+fotosort = ["qml/*", "images/*", "VERSION"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM"]

@@ -5,6 +5,14 @@
   - Create inexisting directories even for permanent target locations
   - Enhance autocomplete by specifying proper ordering of criteria
   - Make timestamp for temporary directories customisable
+- Fix crash when launching without `-l`/`--location` (now shows the no-image screen)
+- Fix crash when the config file exists but is empty
+- Modernise packaging: replace `setup.py` with `pyproject.toml` (PEP 621), entry point via `[project.scripts]`, drop the `bin/fotosort` stub
+- Rewrite EXIF timestamp extraction using the modern Pillow API and close file handles deterministically
+- Remove dead code (`get_orientation`, `getCurrentImageRotation`) that was unused since QML took over rotation
+- Update to Qt 6 idiom `app.exec()` (replaces deprecated `app.exec_()`)
+- Use `os.makedirs(..., exist_ok=True)` for target directory creation (atomic, no TOCTOU race)
+- Release scripts: `mkupload.sh` now prompts before uploading to PyPI; both scripts use `set -eu` and modern build tooling (`python -m build`, `pip install .`)
 
 # 1.3.1
 
